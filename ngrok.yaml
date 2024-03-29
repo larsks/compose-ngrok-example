@@ -1,0 +1,7 @@
+version: 2
+log: stderr
+tunnels:
+  webserver:
+    addr: webserver:80
+    inspect: false
+    proto: http

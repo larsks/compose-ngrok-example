@@ -1,0 +1,19 @@
+secrets:
+  ngrok_authtoken.yaml:
+    file: ./ngrok_authtoken.yaml
+
+services:
+  ngrok:
+    image: docker.io/ngrok/ngrok:latest
+    volumes:
+    - ./ngrok.yaml:/etc/ngrok/ngrok.yaml
+    secrets:
+    - ngrok_authtoken.yaml
+    command:
+    - --config
+    - /run/secrets/ngrok_authtoken.yaml,/etc/ngrok/ngrok.yaml
+    - start
+    - webserver
+
+  webserver:
+    image: docker.io/traefik/whoami:latest
